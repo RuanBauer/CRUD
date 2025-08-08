@@ -15,6 +15,11 @@ CREATE TABLE categorias (
 );
 
 
+CREATE TABLE cor (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(30) NOT NULL
+);
+
 CREATE TABLE produtos (
     id INT AUTO_INCREMENT PRIMARY KEY,
     nome VARCHAR(255) NOT NULL,
@@ -22,13 +27,7 @@ CREATE TABLE produtos (
     preco DECIMAL(10,2) NOT NULL,
     quantidade INT NOT NULL,
     categoria INT NOT NULL,
-    FOREIGN KEY (categoria) REFERENCES categorias(id)
-);
-
-CREATE TABLE times (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    nome VARCHAR(255) NOT NULL,
-    cidade VARCHAR(255),
-    pais VARCHAR(100),
-    data_fundacao DATE
+    cor_id INT,  -- nova coluna para associar uma cor
+    FOREIGN KEY (categoria) REFERENCES categorias(id),
+    FOREIGN KEY (cor_id) REFERENCES cor(id)
 );
